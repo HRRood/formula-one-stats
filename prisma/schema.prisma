@@ -1,0 +1,164 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("MYSQL_CONNECTION_STRING")
+}
+
+model Constructor {
+  id                  String                @id @db.VarChar(255)
+  name                String                @db.VarChar(255)
+  countryOrigin       String                @db.VarChar(255)
+  seasonId            String                @db.VarChar(255)
+  Season              Season                @relation(fields: [seasonId], references: [id], onDelete: Cascade, map: "Constructor_FK")
+  ConstructorStanding ConstructorStanding[]
+  Driver              Driver[]
+
+  @@index([seasonId], map: "Constructor_FK")
+}
+
+model ConstructorStanding {
+  Id            String      @id @db.VarChar(255)
+  constructorId String      @db.VarChar(255)
+  seasonId      String      @db.VarChar(255)
+  position      Int
+  points        Float       @db.Float
+  Constructor   Constructor @relation(fields: [constructorId], references: [id], onDelete: Cascade, map: "ConstructorStanding_FK")
+  Season        Season      @relation(fields: [seasonId], references: [id], onDelete: Cascade, map: "ConstructorStanding_FK_1")
+
+  @@index([constructorId], map: "ConstructorStanding_FK")
+  @@index([seasonId], map: "ConstructorStanding_FK_1")
+}
+
+model Driver {
+  id               String             @id @db.VarChar(255)
+  constructorId    String             @db.VarChar(255)
+  number           Int
+  seasonId         String             @db.VarChar(255)
+  Season           Season             @relation(fields: [seasonId], references: [id], onDelete: Cascade, map: "Driver_FK")
+  Constructor      Constructor        @relation(fields: [constructorId], references: [id], onDelete: Cascade, map: "Driver_FK_1")
+  DriverStanding   DriverStanding[]
+  PitStop          PitStop[]
+  QualifyingResult QualifyingResult[]
+  RaceResult       RaceResult[]
+
+  @@index([seasonId], map: "Driver_FK")
+  @@index([constructorId], map: "Driver_FK_1")
+}
+
+model DriverInfo {
+  id            String   @id @db.VarChar(255)
+  name          String   @db.VarChar(255)
+  shortName     String   @db.VarChar(3)
+  birthday      DateTime @db.Date
+  nationality   String   @db.VarChar(100)
+  championships Int      @default(0)
+  wins          Int      @default(0)
+  podiums       Int      @default(0)
+  fastestLaps   Int      @default(0)
+  dnfs          Int      @default(0)
+  dnss          Int      @default(0)
+  dsqs          Int      @default(0)
+}
+
+model DriverStanding {
+  id       String @id @db.VarChar(255)
+  driverId String @db.VarChar(255)
+  seasonId String @db.VarChar(255)
+  position Int
+  points   Float  @default(0) @db.Float
+  Driver   Driver @relation(fields: [driverId], references: [id], onDelete: Cascade, map: "DriverStanding_FK")
+  Season   Season @relation(fields: [seasonId], references: [id], onDelete: Cascade, map: "DriverStanding_FK_1")
+
+  @@index([driverId], map: "DriverStanding_FK")
+  @@index([seasonId], map: "DriverStanding_FK_1")
+}
+
+model GpWeekend {
+  id               String             @id @db.VarChar(255)
+  name             String             @db.VarChar(255)
+  date             DateTime           @db.Date
+  type             String             @db.VarChar(100)
+  seasonId         String             @db.VarChar(255)
+  Season           Season             @relation(fields: [seasonId], references: [id], onDelete: Cascade, map: "weekend_FK")
+  QualifyingResult QualifyingResult[]
+  Race             Race[]
+
+  @@index([seasonId], map: "weekend_FK")
+}
+
+model PitStop {
+  id       String @id @db.VarChar(255)
+  driverId String @db.VarChar(255)
+  raceId   String @db.VarChar(255)
+  sconds   Float  @db.Float
+  oldTire  String @db.VarChar(100)
+  newTire  String @db.VarChar(100)
+  lap      Int
+  Driver   Driver @relation(fields: [driverId], references: [id], onDelete: Cascade, map: "PitStops_FK")
+  Race     Race   @relation(fields: [raceId], references: [Id], onDelete: Cascade, map: "PitStops_FK_1")
+
+  @@index([driverId], map: "PitStops_FK")
+  @@index([raceId], map: "PitStops_FK_1")
+}
+
+model Point {
+  id          String       @id @db.VarChar(255)
+  position    Int
+  points      Float        @db.Float
+  sprintPoint Boolean      @default(dbgenerated("b'0'")) @db.Bit(1)
+  RaceResult  RaceResult[]
+}
+
+model QualifyingResult {
+  id          String    @id @db.VarChar(255)
+  position    Int
+  time        DateTime  @db.Time(0)
+  driverId    String    @db.VarChar(255)
+  gpWeekendId String    @db.VarChar(255)
+  Driver      Driver    @relation(fields: [driverId], references: [id], onDelete: Cascade, map: "qualifyingResult_FK")
+  GpWeekend   GpWeekend @relation(fields: [gpWeekendId], references: [id], onDelete: Cascade, map: "qualifyingResult_FK_1")
+
+  @@index([driverId], map: "qualifyingResult_FK")
+  @@index([gpWeekendId], map: "qualifyingResult_FK_1")
+}
+
+model Race {
+  Id          String       @id @db.VarChar(255)
+  type        String       @db.VarChar(100)
+  weather     String       @db.VarChar(255)
+  gpWeekendId String       @db.VarChar(255)
+  PitStop     PitStop[]
+  GpWeekend   GpWeekend    @relation(fields: [gpWeekendId], references: [id], onDelete: Cascade, map: "Race_FK")
+  RaceResult  RaceResult[]
+
+  @@index([gpWeekendId], map: "Race_FK")
+}
+
+model RaceResult {
+  id              String  @id @db.VarChar(255)
+  driverId        String  @db.VarChar(255)
+  raceId          String  @db.VarChar(255)
+  pointsId        String  @db.VarChar(255)
+  fastestLapBonus Boolean @default(dbgenerated("b'0'")) @db.Bit(1)
+  posiitonsGained Int
+  Driver          Driver  @relation(fields: [driverId], references: [id], onDelete: Cascade, map: "RaceResult_FK")
+  Race            Race    @relation(fields: [raceId], references: [Id], onDelete: Cascade, map: "RaceResult_FK_1")
+  Point           Point   @relation(fields: [pointsId], references: [id], onDelete: Cascade, map: "RaceResult_FK_2")
+
+  @@index([driverId], map: "RaceResult_FK")
+  @@index([raceId], map: "RaceResult_FK_1")
+  @@index([pointsId], map: "RaceResult_FK_2")
+}
+
+model Season {
+  id                  String                @id @db.VarChar(255)
+  year                Int
+  Constructor         Constructor[]
+  ConstructorStanding ConstructorStanding[]
+  Driver              Driver[]
+  DriverStanding      DriverStanding[]
+  GpWeekend           GpWeekend[]
+}

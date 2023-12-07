@@ -3,16 +3,12 @@ import { useState, useEffect } from "react";
 
 export const THEME_COLORS = {
   light: {
-    background: "#f7f6ff",
-    backgroundPaper: "#fff",
-    lightPrimary: "#FFA5B3",
-    primary: "#FF8A99",
-    darkPrimary: "#FF7380",
-    lightSecondary: "#C0E9FF",
-    secondary: "#AEDFF7",
-    darkSecondary: "#84C0F4",
+    background: "#F8F8F8",
+    backgroundPaper: "#ECECEC",
+    primary: "#FF77B9",
+    secondary: "#FFD966",
     text: "#333333",
-    success: "#8CEBA7",
+    success: "#A0D2B4",
   },
   dark: {
     background: "#040101;",

@@ -1,6 +1,4 @@
-import { ApiPagination } from "@/backend/repositories/season/getAllSeasons";
-import { api } from "../api";
-import { ApiResponse } from "@/utils/createDefaultResponse";
+import { ApiOptions, api } from "../api";
 import { Season } from "@prisma/client";
 import { Pagination } from "@/utils/calculatePagination";
 
@@ -21,10 +19,10 @@ export const defaultPagination: Pagination = {
   pages: [1],
 };
 
-export const getAllSeasons = async ({ pageNumber = 1, pageSize = 10 }: ApiPagination): Promise<SeasonResponse> => {
-  const response: ApiResponse<SeasonResponse> = await api.get(`/api/seasons?pageNumber=${pageNumber}&pageSize=${pageSize}`);
+export const getAllSeasons = async (options?: ApiOptions): Promise<SeasonResponse> => {
+  const response = await api.get<SeasonResponse>(`/api/seasons`, options);
 
-  if (!response.success) {
+  if (!response.succeeded) {
     return { items: [], pagination: defaultPagination };
   }
 

@@ -1,3 +1,4 @@
+"use client";
 import { Button as MuiButton, Theme } from "@mui/material";
 
 type ButtonBaseColors = "primary" | "secondary" | "error" | "warning" | "info" | "success";

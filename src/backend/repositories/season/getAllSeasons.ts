@@ -1,4 +1,4 @@
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/backend/lib/prisma";
 
 export interface ApiPagination {
   pageNumber: number;

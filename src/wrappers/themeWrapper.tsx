@@ -3,7 +3,7 @@ import { CssBaseline } from "@mui/material";
 import ThemeProvider from "@mui/material/styles/ThemeProvider";
 import createTheme from "@mui/material/styles/createTheme";
 import { useMemo } from "react";
-import { useTheme } from "../hooks/useTheme";
+import { useTheme } from "../api/useTheme";
 
 interface ThemeWrapperProps {
   children: React.ReactNode;

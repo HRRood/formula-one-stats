@@ -17,7 +17,6 @@ export async function GET(request: Request) {
 }
 
 const seasonValidation = z.object({
-  id: z.string(),
   year: z
     .number()
     .min(1950)
@@ -25,13 +24,15 @@ const seasonValidation = z.object({
 });
 
 export async function POST(request: Request) {
-  const { id, year }: Season = await request.json();
-  const data = seasonValidation.safeParse({ id, year });
+  const { year }: Season = await request.json();
+  const data = seasonValidation.safeParse({ year });
 
   if (!data.success) {
     return createDefaultResponse({}, false, "Invalid season data", { status: 400 });
   }
 
-  const season = await createSeason(data.data);
-  return createDefaultResponse({ data: season }, true, "Season created", { status: 201 });
+  const uuid = crypto.randomUUID();
+
+  const season = await createSeason({ id: uuid, ...data.data });
+  return createDefaultResponse(season, true, "Season created", { status: 201 });
 }

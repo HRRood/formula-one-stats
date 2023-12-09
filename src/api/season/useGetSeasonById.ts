@@ -1,11 +1,11 @@
 import { ApiOptions } from "@/api/api";
 import { useSWR } from "../utils/useSWR";
-import { getAllSeasons } from "@/api/season/getAllSeasons";
+import { getSeasonById } from "./getSeasonById";
 import { SEASON_KEY } from "./utils";
 import { mutate } from "swr";
 
-export const useGetAllSeasons = (options?: ApiOptions) => {
-  const returnData = useSWR(`${SEASON_KEY}useGetAllSeasons-${JSON.stringify(options)}`, () => getAllSeasons(options));
+export const useGetSeasonById = (id: string, options?: ApiOptions) => {
+  const returnData = useSWR(`${SEASON_KEY}useGetSeasonById-${JSON.stringify(options)}-${id}`, () => getSeasonById(id, options));
 
   return {
     ...returnData,

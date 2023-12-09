@@ -1,4 +1,4 @@
-import { createSeason } from "@/backend/repositories/season/createSeason";
+import { createOrUpdateSeason } from "@/backend/repositories/season/createOrUpdateSeason";
 import { getAllSeasons } from "@/backend/repositories/season/getAllSeasons";
 import { getSeasonCount } from "@/backend/repositories/season/getSeasonCount";
 import { calculatePagination } from "@/utils/calculatePagination";
@@ -17,6 +17,7 @@ export async function GET(request: Request) {
 }
 
 const seasonValidation = z.object({
+  id: z.string(),
   year: z
     .number()
     .min(1950)
@@ -24,15 +25,13 @@ const seasonValidation = z.object({
 });
 
 export async function POST(request: Request) {
-  const { year }: Season = await request.json();
-  const data = seasonValidation.safeParse({ year });
+  const { id, year }: Season = await request.json();
+  const data = seasonValidation.safeParse({ id, year });
 
   if (!data.success) {
     return createDefaultResponse({}, false, "Invalid season data", { status: 400 });
   }
 
-  const uuid = crypto.randomUUID();
-
-  const season = await createSeason({ id: uuid, ...data.data });
-  return createDefaultResponse(season, true, "Season created", { status: 201 });
+  const season = await createOrUpdateSeason(data.data);
+  return createDefaultResponse(season, true, "Season created");
 }

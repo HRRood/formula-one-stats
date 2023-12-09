@@ -68,7 +68,7 @@ export class Api {
       headers,
     });
 
-    if (response.status === 200) {
+    if (response.status >= 200 && response.status < 300) {
       try {
         return response.json();
       } catch {

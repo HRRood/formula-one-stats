@@ -6,6 +6,7 @@ import { useState } from "react";
 import { GridColDef } from "@mui/x-data-grid";
 import { Season } from "@prisma/client";
 import { DataTable, PaginationParams } from "@/components/dataTable/DataTable";
+import Link from "next/link";
 
 export const cols: GridColDef<Season>[] = [
   {
@@ -13,7 +14,11 @@ export const cols: GridColDef<Season>[] = [
     field: "year",
     minWidth: 240,
     headerName: "Year",
-    renderCell: ({ row }) => <Typography>{row.year}</Typography>,
+    renderCell: ({ row }) => (
+      <Link href={`/seasons/${row.id}`}>
+        <Typography>{row.year}</Typography>
+      </Link>
+    ),
   },
 ];
 

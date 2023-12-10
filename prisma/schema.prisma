@@ -7,26 +7,14 @@ datasource db {
   url      = env("MYSQL_CONNECTION_STRING")
 }
 
-model Constructor {
-  id                  String                @id @db.VarChar(255)
-  name                String                @db.VarChar(255)
-  countryOrigin       String                @db.VarChar(255)
-  seasonId            String                @db.VarChar(255)
-  Season              Season                @relation(fields: [seasonId], references: [id], onDelete: Cascade, map: "Constructor_FK")
-  ConstructorStanding ConstructorStanding[]
-  Driver              Driver[]
-
-  @@index([seasonId], map: "Constructor_FK")
-}
-
 model ConstructorStanding {
-  Id            String      @id @db.VarChar(255)
-  constructorId String      @db.VarChar(255)
-  seasonId      String      @db.VarChar(255)
+  Id            String          @id @db.VarChar(255)
+  constructorId String          @db.VarChar(255)
+  seasonId      String          @db.VarChar(255)
   position      Int
-  points        Float       @db.Float
-  Constructor   Constructor @relation(fields: [constructorId], references: [id], onDelete: Cascade, map: "ConstructorStanding_FK")
-  Season        Season      @relation(fields: [seasonId], references: [id], onDelete: Cascade, map: "ConstructorStanding_FK_1")
+  points        Float           @db.Float
+  Constructor   ConstructorTeam @relation(fields: [constructorId], references: [id], onDelete: Cascade, map: "ConstructorStanding_FK")
+  Season        Season          @relation(fields: [seasonId], references: [id], onDelete: Cascade, map: "ConstructorStanding_FK_1")
 
   @@index([constructorId], map: "ConstructorStanding_FK")
   @@index([seasonId], map: "ConstructorStanding_FK_1")
@@ -38,7 +26,7 @@ model Driver {
   number           Int
   seasonId         String             @db.VarChar(255)
   Season           Season             @relation(fields: [seasonId], references: [id], onDelete: Cascade, map: "Driver_FK")
-  Constructor      Constructor        @relation(fields: [constructorId], references: [id], onDelete: Cascade, map: "Driver_FK_1")
+  Constructor      ConstructorTeam    @relation(fields: [constructorId], references: [id], onDelete: Cascade, map: "Driver_FK_1")
   DriverStanding   DriverStanding[]
   PitStop          PitStop[]
   QualifyingResult QualifyingResult[]
@@ -156,9 +144,21 @@ model RaceResult {
 model Season {
   id                  String                @id @db.VarChar(255)
   year                Int
-  Constructor         Constructor[]
   ConstructorStanding ConstructorStanding[]
+  ConstructorTeam     ConstructorTeam[]
   Driver              Driver[]
   DriverStanding      DriverStanding[]
   GpWeekend           GpWeekend[]
+}
+
+model ConstructorTeam {
+  id                  String                @id @db.VarChar(255)
+  name                String                @db.VarChar(255)
+  countryOrigin       String                @db.VarChar(255)
+  seasonId            String                @db.VarChar(255)
+  ConstructorStanding ConstructorStanding[]
+  Season              Season                @relation(fields: [seasonId], references: [id], onDelete: Cascade, map: "Constructor_FK")
+  Driver              Driver[]
+
+  @@index([seasonId], map: "Constructor_FK")
 }

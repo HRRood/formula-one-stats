@@ -1,6 +1,6 @@
 import { useRouter } from "next/navigation";
-import { Icon } from "../Icon";
-import { Button } from "../button";
+import { Icon } from "../../Icon";
+import { Button } from "../../button";
 import { useState } from "react";
 import { FormHeaderProps, FormProps } from "./formHeader";
 import { Box } from "@mui/material";

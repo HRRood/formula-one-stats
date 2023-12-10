@@ -1,8 +1,8 @@
 import { IconifyIcon } from "@iconify/react/dist/iconify.js";
 import { Typography, Grid, Theme } from "@mui/material";
 import { ComponentProps, useRef, useState } from "react";
-import { Button } from "../button";
-import { Icon } from "../Icon";
+import { Button } from "../../button";
+import { Icon } from "../../Icon";
 import { useClickAway } from "react-use";
 
 export interface EditableHeaderProps {

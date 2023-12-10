@@ -2,7 +2,7 @@
 
 import { createOrUpdateSeason } from "@/api/season/createOrUpdateSeason";
 import { useGetSeasonById } from "@/api/season/useGetSeasonById";
-import { FormHeader } from "@/components/global/form/formHeader";
+import { FormHeader } from "@/components/global/form/FormHeader/formHeader";
 import { Form } from "@/wrappers/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Season } from "@prisma/client";

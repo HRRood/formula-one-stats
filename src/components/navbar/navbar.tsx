@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Box, List, Link } from "@mui/material";
+import { Box, List, Link, ListItem } from "@mui/material";
 
 export const Navbar = () => {
   return (
@@ -28,7 +28,14 @@ export const Navbar = () => {
           <Image src="/logo.png" fill alt="Logo" />
         </Link>
       </Box>
-      <List sx={{ display: "flex", listStyle: "none", marginLeft: "auto", fontSize: "18px", fontWeight: "bold" }}></List>
+      <List sx={{ display: "flex", listStyle: "none", marginLeft: "auto", fontSize: "18px", fontWeight: "bold" }}>
+        <ListItem sx={{ width: "fit-content" }}>
+          <Link href="/seasons">Seasons</Link>
+        </ListItem>
+        <ListItem sx={{ width: "fit-content" }}>
+          <Link href="/drivers-info">Drivers</Link>
+        </ListItem>
+      </List>
     </Box>
   );
 };

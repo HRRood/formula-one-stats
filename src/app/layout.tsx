@@ -5,6 +5,7 @@ import { JotaiWrapper } from "@/wrappers/jotaiWrapper";
 import { ThemeWrapper } from "@/wrappers/themeWrapper";
 import { Navbar } from "@/components/navbar/navbar";
 import { Box } from "@mui/material";
+import DialogBox from "@/components/global/dialogBox";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <ThemeWrapper>
             <Navbar />
             <Box sx={{ padding: "10px" }}>{children}</Box>
+            <DialogBox />
           </ThemeWrapper>
         </JotaiWrapper>
       </body>

@@ -21,19 +21,16 @@ model ConstructorStanding {
 }
 
 model Driver {
-  id               String             @id @db.VarChar(255)
-  constructorId    String             @db.VarChar(255)
-  number           Int
-  seasonId         String             @db.VarChar(255)
-  Season           Season             @relation(fields: [seasonId], references: [id], onDelete: Cascade, map: "Driver_FK")
-  Constructor      ConstructorTeam    @relation(fields: [constructorId], references: [id], onDelete: Cascade, map: "Driver_FK_1")
-  DriverStanding   DriverStanding[]
-  PitStop          PitStop[]
-  QualifyingResult QualifyingResult[]
-  RaceResult       RaceResult[]
+  id                String             @id @db.VarChar(255)
+  constructorTeamId String             @db.VarChar(255)
+  number            Int
+  ConstructorTeam   ConstructorTeam    @relation(fields: [constructorTeamId], references: [id], onDelete: Cascade, map: "Driver_FK_1")
+  DriverStanding    DriverStanding[]
+  PitStop           PitStop[]
+  QualifyingResult  QualifyingResult[]
+  RaceResult        RaceResult[]
 
-  @@index([seasonId], map: "Driver_FK")
-  @@index([constructorId], map: "Driver_FK_1")
+  @@index([constructorTeamId], map: "Driver_FK_1")
 }
 
 model DriverInfo {
@@ -148,7 +145,6 @@ model Season {
   year                Int
   ConstructorStanding ConstructorStanding[]
   ConstructorTeam     ConstructorTeam[]
-  Driver              Driver[]
   DriverStanding      DriverStanding[]
   GpWeekend           GpWeekend[]
 }

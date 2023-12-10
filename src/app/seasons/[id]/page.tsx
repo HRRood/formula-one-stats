@@ -3,11 +3,13 @@
 import { Container } from "@/components/global/container";
 import { SeasonDetailPage } from "./seasonDetailPage";
 import { useGetSeasonById } from "@/api/season/useGetSeasonById";
+import { useGetAllSeasonDrivers } from "@/api/season/driver/useGetAllSeasons";
 
 export default function Page({ params }: { params: { id: string } }) {
-  const { data, mutate, isLoading } = useGetSeasonById(params.id);
+  const { isLoading } = useGetSeasonById(params.id);
+  const { isLoading: seasonDriversLoading } = useGetAllSeasonDrivers(params.id);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading || seasonDriversLoading) return <div>Loading...</div>;
 
   return (
     <Container>

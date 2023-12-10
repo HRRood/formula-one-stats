@@ -29,7 +29,6 @@ export const InputField = (props: FormInputFieldProps) => {
 
 const Comp = memo(({ name, errorMsgPositionAbsolute = false, errors, setValue, getValues, register, watch, ...props }: FormInputFieldProps & FormProps) => {
   const errorMsg = getNestedErrorMessageFormErrors(errors, name);
-  console.log(errorMsg);
 
   useEffect(() => {}, []);
   return (

@@ -30,7 +30,7 @@ interface Props<T extends GridValidRowModel = any> extends Omit<Omit<ComponentPr
 }
 
 export const DataTable = <T extends GridValidRowModel = any>({
-  sortingMode = "server",
+  sortingMode = "client",
   paginationMode = "server",
   onPaginationChange,
   totalCount,

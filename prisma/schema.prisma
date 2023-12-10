@@ -46,9 +46,11 @@ model DriverInfo {
   wins          Int      @default(0)
   podiums       Int      @default(0)
   fastestLaps   Int      @default(0)
+  polepositions Int      @default(0)
   dnfs          Int      @default(0)
   dnss          Int      @default(0)
   dsqs          Int      @default(0)
+  raceStarts    Int      @default(0)
 }
 
 model DriverStanding {

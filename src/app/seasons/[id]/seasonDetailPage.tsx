@@ -31,7 +31,6 @@ export const SeasonDetailPage = ({ id }: Props) => {
 
   const onSubmit = async (data: Season) => {
     const seasonResponse = await createOrUpdateSeason(data);
-    console.log(seasonResponse);
     await mutate();
     if (!seasonResponse.succeeded) {
       return;

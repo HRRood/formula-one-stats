@@ -29,7 +29,7 @@ export async function POST(request: Request) {
   const data = constructorValidation.safeParse({ id, name, countryOrigin, seasonId });
 
   if (!data.success) {
-    return createDefaultResponse({}, false, "Invalid season data", { status: 400 });
+    return createDefaultResponse({}, false, "Invalid constructor data", { status: 400 });
   }
 
   const season = await getSeasonById(seasonId);
@@ -40,5 +40,5 @@ export async function POST(request: Request) {
 
   const constructor = await createOrUpdateConstructor(data.data);
 
-  return createDefaultResponse(constructor, true, "Season created");
+  return createDefaultResponse(constructor, true, "Constructor created");
 }

@@ -1,9 +1,9 @@
 "use client";
 
 import { DialogType, useDialog, useDialogState } from "@/hooks/layout/useDialog";
-import { YesNoDialog } from "../dialog/YesNoDialog";
 import { Dialog } from "@mui/material";
 import { FC } from "react";
+import { YesNoDialog } from "../dialog/yesNoDialog";
 
 export const dialogComponents: Record<DialogType, { comp: FC<any>; size: "lg" | "sm" | "xs" }> = {
   [DialogType.YesNo]: {

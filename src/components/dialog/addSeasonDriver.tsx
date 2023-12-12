@@ -8,7 +8,6 @@ import {z} from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {InputField} from "@/components/global/form/fields/inputField";
 import {SelectField} from "@/components/global/form/fields/selectField";
-import {useGetAllSeasonDrivers} from "@/api/season/driver/useGetAllSeasons";
 import {useGetAllDriversInfo} from "@/api/drivers-info/useGetAllDriversInfo";
 import {Button} from "@/components/global/button";
 
@@ -35,10 +34,12 @@ export const AddSeasonDriver = ({seasonId}: DialogPropsMap["addSeasonDriverDialo
       <Box sx={{padding: '20px', width: {sx: "90vw", sm: "60vw", md: "40vw", lg: "20vw"}}}>
         <Form {...form} onSubmit={(data) => console.log(data)}>
           <Box sx={{display: 'flex', flexDirection: 'column', gap: "10px"}}>
-            <SelectField includeSearchHeader label={"Driver"} name={"driverInfoId"} options={drivers?.items?.map(x => ({
-              label: x.name,
-              value: x.id
-            })) || []}/>
+            <SelectField includeSearchHeader label={"Driver"} name={"driverInfoId"}
+                         options={drivers?.items?.map(x => ({
+                           label: x.name,
+                           value: x.id
+                         })) || []}/>
+
             <InputField name={"number"} type={"number"} label={"Race number"}/>
             <SelectField label={"Constructor"} name={"constructorTeamId"} options={constructors?.map(x => ({
               label: x.name,

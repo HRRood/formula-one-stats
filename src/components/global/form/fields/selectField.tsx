@@ -52,7 +52,7 @@ const Comp: FC<FormDropdownFieldProps & FormProps> = memo(({
 
   const [searchText, setSearchText] = useState("");
   const filteredOptions = useMemo(
-      () => options.filter((option) => option.label.toLowerCase().includes(searchText)),
+      () => options.filter((option) => option.label.toLowerCase().includes(searchText.toLowerCase())),
       [searchText]
   );
 
@@ -68,6 +68,7 @@ const Comp: FC<FormDropdownFieldProps & FormProps> = memo(({
             value={watch(name)}
             error={!!errorMsg}
             input={<OutlinedInput label={label}/>}
+            MenuProps={{autoFocus: false}}
             {...props}
         >
           {includeSearchHeader && (

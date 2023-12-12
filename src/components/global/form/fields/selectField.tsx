@@ -52,8 +52,8 @@ const Comp: FC<FormDropdownFieldProps & FormProps> = memo(({
 
   const [searchText, setSearchText] = useState("");
   const filteredOptions = useMemo(
-      () => options.filter((option) => option.label.toLowerCase().includes(searchText.toLowerCase())),
-      [searchText]
+      () => options.filter((option) => searchText === "" ? true : option.label.toLowerCase().includes(searchText.toLowerCase())),
+      [searchText, options]
   );
 
   useEffect(() => {
@@ -64,7 +64,9 @@ const Comp: FC<FormDropdownFieldProps & FormProps> = memo(({
       <FormControl fullWidth>
         <InputLabel>{label}</InputLabel>
         <Select
-            onChange={(event) => setValue(name, event.target.value, {shouldDirty: true})}
+            onChange={(event) => {
+              setValue(name, event.target.value, {shouldDirty: true});
+            }}
             value={watch(name)}
             error={!!errorMsg}
             input={<OutlinedInput label={label}/>}
@@ -76,7 +78,6 @@ const Comp: FC<FormDropdownFieldProps & FormProps> = memo(({
                 <TextField
                     size="small"
                     sx={{margin: "5px"}}
-                    // Autofocus on textfield
                     autoFocus
                     placeholder="Type to search..."
                     fullWidth

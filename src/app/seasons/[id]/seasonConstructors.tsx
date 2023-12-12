@@ -15,9 +15,9 @@ export const SeasonConstructors = ({ seasonId }: Props) => {
       <Box sx={{ background: (theme) => theme.palette.background.paper, borderRadius: "10px", padding: "20px" }}>
         <Box sx={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap" }}>
           <Typography variant="h4">Constructors</Typography>
-          <Button onClick={() => openDialog(DialogType.AddSeasonDriver, {})} color="primary">
+          {/* <Button onClick={() => openDialog(DialogType.AddSeasonDriver, {})} color="primary">
             Add constructor
-          </Button>
+          </Button> */}
         </Box>
       </Box>
       <Box sx={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
@@ -28,7 +28,7 @@ export const SeasonConstructors = ({ seasonId }: Props) => {
               sx={{
                 padding: "10px",
                 flex: 1,
-                minWidth: { sx: "100%", sm: "calc(50% - 10px)", md: "calc(33% - 10px)", lg: "calc(25% - 10px)" },
+                minWidth: { sx: "100%", sm: "calc(50% - 10px)" },
                 background: (theme) => theme.palette.background.paper,
                 borderRadius: "10px",
               }}

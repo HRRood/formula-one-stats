@@ -22,7 +22,9 @@ export type DialogPropsMap = {
     noLabel?: string;
     buttonType?: "primary" | "secondary" | "success" | "error" | "info" | "warning";
   };
-  [DialogType.AddSeasonDriver]: {};
+  [DialogType.AddSeasonDriver]: {
+    seasonId: string;
+  };
   [DialogType.None]: {};
 };
 

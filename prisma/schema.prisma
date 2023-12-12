@@ -21,16 +21,18 @@ model ConstructorStanding {
 }
 
 model Driver {
-  id                String             @id @db.VarChar(255)
-  constructorTeamId String             @db.VarChar(255)
+  id                String          @id @db.VarChar(255)
+  driverInfoId      String          @db.VarChar(255)
+  constructorTeamId String          @db.VarChar(255)
   number            Int
-  ConstructorTeam   ConstructorTeam    @relation(fields: [constructorTeamId], references: [id], onDelete: Cascade, map: "Driver_FK_1")
-  DriverStanding    DriverStanding[]
-  PitStop           PitStop[]
-  QualifyingResult  QualifyingResult[]
-  RaceResult        RaceResult[]
+  seasonId          String          @db.VarChar(255)
+  ConstructorTeam   ConstructorTeam @relation(fields: [constructorTeamId], references: [id], onDelete: Cascade, map: "Driver_FK_1")
+  DriverInfo        DriverInfo      @relation(fields: [driverInfoId], references: [id], onDelete: Cascade, map: "Driver_DriverInfo_FK")
+  Season            Season          @relation(fields: [seasonId], references: [id], onDelete: Cascade, map: "Driver_FK")
 
-  @@index([constructorTeamId], map: "Driver_FK_1")
+  @@index([constructorTeamId], map: "Driver_Consturctor_FK")
+  @@index([driverInfoId], map: "Driver_DriverInfo_FK")
+  @@index([seasonId], map: "Driver_Season_FK")
 }
 
 model DriverInfo {
@@ -48,6 +50,7 @@ model DriverInfo {
   dnss          Int      @default(0)
   dsqs          Int      @default(0)
   raceStarts    Int      @default(0)
+  Driver        Driver[]
 }
 
 model DriverStanding {
@@ -56,7 +59,6 @@ model DriverStanding {
   seasonId String @db.VarChar(255)
   position Int
   points   Float  @default(0) @db.Float
-  Driver   Driver @relation(fields: [driverId], references: [id], onDelete: Cascade, map: "DriverStanding_FK")
   Season   Season @relation(fields: [seasonId], references: [id], onDelete: Cascade, map: "DriverStanding_FK_1")
 
   @@index([driverId], map: "DriverStanding_FK")
@@ -84,7 +86,6 @@ model PitStop {
   oldTire  String @db.VarChar(100)
   newTire  String @db.VarChar(100)
   lap      Int
-  Driver   Driver @relation(fields: [driverId], references: [id], onDelete: Cascade, map: "PitStops_FK")
   Race     Race   @relation(fields: [raceId], references: [Id], onDelete: Cascade, map: "PitStops_FK_1")
 
   @@index([driverId], map: "PitStops_FK")
@@ -105,7 +106,6 @@ model QualifyingResult {
   time        DateTime  @db.Time(0)
   driverId    String    @db.VarChar(255)
   gpWeekendId String    @db.VarChar(255)
-  Driver      Driver    @relation(fields: [driverId], references: [id], onDelete: Cascade, map: "qualifyingResult_FK")
   GpWeekend   GpWeekend @relation(fields: [gpWeekendId], references: [id], onDelete: Cascade, map: "qualifyingResult_FK_1")
 
   @@index([driverId], map: "qualifyingResult_FK")
@@ -131,7 +131,6 @@ model RaceResult {
   pointsId        String  @db.VarChar(255)
   fastestLapBonus Boolean @default(dbgenerated("b'0'")) @db.Bit(1)
   posiitonsGained Int
-  Driver          Driver  @relation(fields: [driverId], references: [id], onDelete: Cascade, map: "RaceResult_FK")
   Race            Race    @relation(fields: [raceId], references: [Id], onDelete: Cascade, map: "RaceResult_FK_1")
   Point           Point   @relation(fields: [pointsId], references: [id], onDelete: Cascade, map: "RaceResult_FK_2")
 
@@ -145,6 +144,7 @@ model Season {
   year                Int
   ConstructorStanding ConstructorStanding[]
   ConstructorTeam     ConstructorTeam[]
+  Driver              Driver[]
   DriverStanding      DriverStanding[]
   GpWeekend           GpWeekend[]
 }

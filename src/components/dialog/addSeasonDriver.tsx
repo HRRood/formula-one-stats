@@ -1,5 +1,5 @@
 import {useGetAllSeasonConstructors} from "@/api/season/constructor/useGetAllSeasonsConstructors";
-import {DialogPropsMap, DialogType} from "@/hooks/layout/useDialog";
+import {DialogPropsMap} from "@/hooks/layout/useDialog";
 import {Form} from "@/wrappers/form";
 import {Box} from "@mui/material";
 import {Driver} from "@prisma/client";
@@ -15,24 +15,27 @@ const validation = z.object({
   driverInfoId: z.string().min(1, {message: "Driver is required"}),
   constructorTeamId: z.string().min(1, {message: "Constructor is required"}),
   number: z.coerce.number().min(1, {message: "Number range is 1 - 99"}).max(99, {message: "Number range is 1 - 99"}),
-  seasonId: z.string().min(1, {message: "Season is required"})
+  seasonId: z.string().min(1, {message: "Season is required"}),
+  id: z.string().min(1, {message: "Id is required"})
 })
-export const AddSeasonDriver = ({seasonId}: DialogPropsMap["addSeasonDriverDialog"]) => {
-  const {data: constructors, isLoading: constructorsLoading} = useGetAllSeasonConstructors(seasonId);
-  const {data: drivers, isLoading: driversLoading} = useGetAllDriversInfo();
+export const AddSeasonDriver = ({seasonId, onCreate}: DialogPropsMap["addSeasonDriverDialog"]) => {
+  const {data: constructors} = useGetAllSeasonConstructors(seasonId);
+  const {data: drivers} = useGetAllDriversInfo();
 
-  const form = useForm<Omit<Driver, "id">>({
+  const form = useForm<Driver>({
     resolver: zodResolver(validation),
     defaultValues: {
       driverInfoId: "",
       constructorTeamId: "",
       number: 0,
       seasonId,
+      id: "new-season-driver"
     },
   });
+
   return (
       <Box sx={{padding: '20px', width: {sx: "90vw", sm: "60vw", md: "40vw", lg: "20vw"}}}>
-        <Form {...form} onSubmit={(data) => console.log(data)}>
+        <Form {...form} onSubmit={onCreate}>
           <Box sx={{display: 'flex', flexDirection: 'column', gap: "10px"}}>
             <SelectField includeSearchHeader label={"Driver"} name={"driverInfoId"}
                          options={drivers?.items?.map(x => ({

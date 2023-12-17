@@ -1,7 +1,8 @@
 "use client";
 
-import { atom, useAtom } from "jotai";
-import { useCallback } from "react";
+import {atom, useAtom, useSetAtom} from "jotai";
+import {useCallback} from "react";
+import {Driver} from "@prisma/client";
 
 export type ObjectValues<T> = T[keyof T];
 
@@ -24,6 +25,7 @@ export type DialogPropsMap = {
   };
   [DialogType.AddSeasonDriver]: {
     seasonId: string;
+    onCreate: (data: Driver) => Promise<void> | void;
   };
   [DialogType.None]: {};
 };
@@ -43,21 +45,21 @@ export const dialogAtom = atom<DialogState>({
 export type openDialogFunc = <T extends DialogType>(dialogType: T, dialogProps?: DialogState<T>["dialogProps"]) => void;
 
 export const useDialog = () => {
-  const [, setDialogState] = useAtom(dialogAtom);
+  const setDialogState = useSetAtom(dialogAtom);
 
   const openDialog: openDialogFunc = useCallback(<T extends DialogType>(dialogType: T, dialogProps?: DialogState<T>["dialogProps"]) => {
-    setDialogState({ dialogType, dialogProps, open: true });
-  }, []);
+    setDialogState({dialogType, dialogProps, open: true});
+  }, [setDialogState]);
 
   const closeDialog = useCallback(() => {
-    setDialogState({ open: false, dialogType: DialogType.None, dialogProps: {} });
-  }, []);
+    setDialogState({open: false, dialogType: DialogType.None, dialogProps: {}});
+  }, [setDialogState]);
 
-  return { openDialog, closeDialog };
+  return {openDialog, closeDialog};
 };
 
 export const useDialogState = () => {
   const [state] = useAtom(dialogAtom);
 
-  return { state };
+  return {state};
 };

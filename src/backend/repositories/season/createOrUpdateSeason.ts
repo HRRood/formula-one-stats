@@ -1,10 +1,10 @@
-import { prisma } from "@/backend/lib/prisma";
-import { Season } from "@prisma/client";
+import {prisma} from "@/backend/lib/prisma";
+import {Season} from "@prisma/client";
 
 export const createOrUpdateSeason = async (season: Season) => {
   if (season.id.startsWith("new-")) {
     season.id = crypto.randomUUID();
-    return await prisma.season.create({
+    return prisma.season.create({
       data: season,
     });
   }

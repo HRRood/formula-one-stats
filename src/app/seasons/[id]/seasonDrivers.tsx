@@ -49,6 +49,10 @@ const cols: GridColDef<DriverType>[] = [
 export const SeasonDrivers = ({seasonId}: Props) => {
   const {data, isLoading, mutate} = useGetAllSeasonDrivers(seasonId);
   const {openDialog, closeDialog} = useDialog();
+
+  if (isLoading && !data) {
+    return <div>Loading...</div>;
+  }
   return (
       <Box sx={{background: (theme) => theme.palette.background.paper, borderRadius: "10px", padding: "20px"}}>
         <Box sx={{display: "flex", justifyContent: "space-between", flexWrap: "wrap"}}>

@@ -1,4 +1,4 @@
-import { prisma } from "@/backend/lib/prisma";
+import {prisma} from "@/backend/lib/prisma";
 
 export const getSeasonConstructors = async (id: string) => {
   return await prisma.constructorTeam.findMany({
@@ -9,6 +9,11 @@ export const getSeasonConstructors = async (id: string) => {
     },
     include: {
       Season: true,
+      Driver: {
+        include: {
+          DriverInfo: true,
+        },
+      },
     },
   });
 };

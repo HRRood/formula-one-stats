@@ -38,7 +38,7 @@ export const DataTable = <T extends GridValidRowModel = any>({
   defaultSort,
   isLoading = false,
   onSortModelChange,
-  paginationParams = { pageSize: 100, pageNumber: 1 },
+  paginationParams = { pageSize: 10, pageNumber: 1 },
   ...props
 }: Props<T>) => {
   const initSort: GridSortModel = [{ sort: defaultSort?.sort || "asc", field: defaultSort?.property || "name" }];
@@ -64,6 +64,7 @@ export const DataTable = <T extends GridValidRowModel = any>({
           columns={props.columns.map((x) => ({ ...x, sortingOrder: ["asc", "desc"], disableColumnMenu: true }))}
           autoHeight
           pagination
+          pageSizeOptions={[10, 25, 50, 100]}
           rowCount={totalCount ?? props.rows.length}
           sortingMode={sortingMode}
           onSortModelChange={(model) => {

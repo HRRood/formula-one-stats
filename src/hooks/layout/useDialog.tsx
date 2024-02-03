@@ -1,8 +1,8 @@
 "use client";
 
-import {atom, useAtom, useSetAtom} from "jotai";
-import {useCallback} from "react";
-import {Driver} from "@prisma/client";
+import { Driver } from "@/backend/types/dbTypes";
+import { atom, useAtom, useSetAtom } from "jotai";
+import { useCallback } from "react";
 
 export type ObjectValues<T> = T[keyof T];
 
@@ -47,19 +47,22 @@ export type openDialogFunc = <T extends DialogType>(dialogType: T, dialogProps?:
 export const useDialog = () => {
   const setDialogState = useSetAtom(dialogAtom);
 
-  const openDialog: openDialogFunc = useCallback(<T extends DialogType>(dialogType: T, dialogProps?: DialogState<T>["dialogProps"]) => {
-    setDialogState({dialogType, dialogProps, open: true});
-  }, [setDialogState]);
+  const openDialog: openDialogFunc = useCallback(
+    <T extends DialogType>(dialogType: T, dialogProps?: DialogState<T>["dialogProps"]) => {
+      setDialogState({ dialogType, dialogProps, open: true });
+    },
+    [setDialogState]
+  );
 
   const closeDialog = useCallback(() => {
-    setDialogState({open: false, dialogType: DialogType.None, dialogProps: {}});
+    setDialogState({ open: false, dialogType: DialogType.None, dialogProps: {} });
   }, [setDialogState]);
 
-  return {openDialog, closeDialog};
+  return { openDialog, closeDialog };
 };
 
 export const useDialogState = () => {
   const [state] = useAtom(dialogAtom);
 
-  return {state};
+  return { state };
 };

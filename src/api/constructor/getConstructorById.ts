@@ -1,8 +1,8 @@
+import { ConstructorTeam } from "@prisma/client";
 import { ApiOptions, api } from "../api";
-import { ConstructorTeamType } from "@/backend/types/dbTypes";
 
-export const getConstructorById = async (id: string, options?: ApiOptions): Promise<ConstructorTeamType | null> => {
-  const response = await api.get<ConstructorTeamType>(`/api/constructors/${id}`, options);
+export const getConstructorById = async (id: string, options?: ApiOptions): Promise<ConstructorTeam | null> => {
+  const response = await api.get<ConstructorTeam>(`/api/constructors/${id}`, options);
 
   if (!response.succeeded) {
     return null;

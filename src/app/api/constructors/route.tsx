@@ -2,9 +2,9 @@ import { createOrUpdateConstructor } from "@/backend/repositories/constructor/cr
 import { getAllConstructors } from "@/backend/repositories/constructor/getAllConstructors";
 import { getConstructorCount } from "@/backend/repositories/constructor/getConstructorCount";
 import { getSeasonById } from "@/backend/repositories/season/getSeasonById";
+import { ConstructorTeam } from "@/backend/types/dbTypes";
 import { calculatePagination } from "@/utils/calculatePagination";
 import { createDefaultResponse } from "@/utils/createDefaultResponse";
-import { ConstructorTeam } from "@prisma/client";
 import { z } from "zod";
 
 export async function GET(request: Request) {

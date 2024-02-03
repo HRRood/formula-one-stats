@@ -1,10 +1,10 @@
 import { ApiOptions, api } from "../api";
 import { Pagination } from "@/utils/calculatePagination";
 import { defaultPagination } from "../season/getAllSeasons";
-import { ConstructorTeamType } from "@/backend/types/dbTypes";
+import { ConstructorTeam } from "@/backend/types/dbTypes";
 
 export interface ConstructorResponse {
-  items: ConstructorTeamType[];
+  items: ConstructorTeam[];
   pagination: Pagination;
 }
 

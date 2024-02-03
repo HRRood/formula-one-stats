@@ -1,15 +1,14 @@
-import {ApiOptions, api} from "../../api";
-import {Pagination} from "@/utils/calculatePagination";
-import {DriverType} from "@/backend/types/dbTypes";
+import { Driver } from "@/backend/types/dbTypes";
+import { ApiOptions, api } from "../../api";
+import { Pagination } from "@/utils/calculatePagination";
 
 export interface DriverResponse {
-  items: DriverType[];
+  items: Driver[];
   pagination: Pagination;
 }
 
-export const getAllSeasonDrivers = async (seasonId: string, options?: ApiOptions): Promise<DriverType[]> => {
-  const response = await api.get<DriverType[]>(`/api/seasons/${seasonId}/drivers`, options);
-
+export const getAllSeasonDrivers = async (seasonId: string, options?: ApiOptions): Promise<Driver[]> => {
+  const response = await api.get<Driver[]>(`/api/seasons/${seasonId}/drivers`, options);
 
   // if (!response.succeeded) {
   //   return { items: [], pagination: defaultPagination };

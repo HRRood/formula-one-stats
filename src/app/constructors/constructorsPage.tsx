@@ -3,13 +3,12 @@
 import { Box, Typography } from "@mui/material";
 import { useState } from "react";
 import { GridColDef } from "@mui/x-data-grid";
-import { ConstructorTeam } from "@prisma/client";
 import { DataTable, PaginationParams } from "@/components/dataTable/DataTable";
 import Link from "next/link";
 import { useGetAllConstructors } from "@/api/constructor/useGetAllConstructors";
-import { ConstructorTeamType } from "@/backend/types/dbTypes";
+import { ConstructorTeam } from "@/backend/types/dbTypes";
 
-export const cols: GridColDef<ConstructorTeamType>[] = [
+export const cols: GridColDef<ConstructorTeam>[] = [
   {
     flex: 0.3,
     field: "name",
@@ -33,7 +32,7 @@ export const cols: GridColDef<ConstructorTeamType>[] = [
     field: "season.id",
     minWidth: 240,
     headerName: "Season",
-    renderCell: ({ row }) => <Typography>{row.season.year}</Typography>,
+    renderCell: ({ row }) => <Typography>{row.Season.year}</Typography>,
   },
 ];
 

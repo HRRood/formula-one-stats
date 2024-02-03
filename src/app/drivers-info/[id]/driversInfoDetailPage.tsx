@@ -1,20 +1,14 @@
 "use client";
 
-import { createOrUpdateConstructor } from "@/api/constructor/createOrUpdateConstructor";
-import { useGetConstructorById } from "@/api/constructor/useGetConstructorById";
 import { createOrUpdateDriverInfo } from "@/api/drivers-info/createOrUpdateDriverInfo";
 import { useGetDriverInfoById } from "@/api/drivers-info/useGetDriverInfoById";
-import { createOrUpdateSeason } from "@/api/season/createOrUpdateSeason";
-import { useGetAllSeasons } from "@/api/season/useGetAllSeasons";
-import { useGetSeasonById } from "@/api/season/useGetSeasonById";
+import { DriverInfo } from "@/backend/types/dbTypes";
 import { FormHeader } from "@/components/global/form/FormHeader/formHeader";
 import { DateField } from "@/components/global/form/fields/dateField";
 import { InputField } from "@/components/global/form/fields/inputField";
-import { SelectField } from "@/components/global/form/fields/selectField";
 import { Form } from "@/wrappers/form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Box, Grid, TextField } from "@mui/material";
-import { ConstructorTeam, DriverInfo, Season } from "@prisma/client";
+import { Grid } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";

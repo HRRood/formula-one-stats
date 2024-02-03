@@ -1,4 +1,4 @@
-import { Season } from "@prisma/client";
+import { Season } from "@/backend/types/dbTypes";
 import { api } from "../api";
 
 export const createOrUpdateSeason = async (data: Season) => {

@@ -1,4 +1,4 @@
-import { DriverInfo } from "@prisma/client";
+import { DriverInfo } from "@/backend/types/dbTypes";
 import { ApiOptions, api } from "../api";
 import { toDate } from "date-fns";
 

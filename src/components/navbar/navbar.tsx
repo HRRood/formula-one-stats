@@ -33,6 +33,9 @@ export const Navbar = () => {
           <Link href="/seasons">Seasons</Link>
         </ListItem>
         <ListItem sx={{ width: "fit-content" }}>
+          <Link href="/constructors">Constructors</Link>
+        </ListItem>
+        <ListItem sx={{ width: "fit-content" }}>
           <Link href="/drivers-info">Drivers</Link>
         </ListItem>
       </List>

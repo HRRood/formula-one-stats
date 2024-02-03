@@ -1,4 +1,4 @@
-import { DriverInfo } from "@prisma/client";
+import { DriverInfo } from "@/backend/types/dbTypes";
 import { api } from "../api";
 
 export const createOrUpdateDriverInfo = async (data: DriverInfo) => {

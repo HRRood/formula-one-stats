@@ -1,4 +1,4 @@
-import { Season } from "@prisma/client";
+import { Season } from "@/backend/types/dbTypes";
 import { ApiOptions, api } from "../api";
 
 export const getSeasonById = async (id: string, options?: ApiOptions): Promise<Season | null> => {

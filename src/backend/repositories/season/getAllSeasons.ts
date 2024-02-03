@@ -14,5 +14,8 @@ export async function getAllSeasons({ pagination }: GetAllSeasonsProps) {
   return await prisma.season.findMany({
     skip: (pageNumber - 1) * pageSize,
     take: pageSize,
+    orderBy: {
+      year: "desc",
+    },
   });
 }

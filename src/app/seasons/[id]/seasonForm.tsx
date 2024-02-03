@@ -1,14 +1,14 @@
 "use client";
 
-import {createOrUpdateSeason} from "@/api/season/createOrUpdateSeason";
-import {FormHeader} from "@/components/global/form/FormHeader/formHeader";
-import {Form} from "@/wrappers/form";
-import {zodResolver} from "@hookform/resolvers/zod";
-import {Season} from "@prisma/client";
-import {useRouter} from "next/navigation";
-import {useForm} from "react-hook-form";
-import {z} from "zod";
-import {useGetSeasonById} from "@/api/season/useGetSeasonById";
+import { createOrUpdateSeason } from "@/api/season/createOrUpdateSeason";
+import { FormHeader } from "@/components/global/form/FormHeader/formHeader";
+import { Form } from "@/wrappers/form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { useGetSeasonById } from "@/api/season/useGetSeasonById";
+import { Season } from "@/backend/types/dbTypes";
 
 const validation = z.object({
   id: z.string(),
@@ -19,9 +19,9 @@ interface Props {
   id: string;
 }
 
-export const SeasonForm = ({id}: Props) => {
-  const {data, mutate} = useGetSeasonById(id);
-  const season = id.startsWith("new") ? {id: "new-season", year: 0} : (data as Season);
+export const SeasonForm = ({ id }: Props) => {
+  const { data, mutate } = useGetSeasonById(id);
+  const season = id.startsWith("new") ? { id: "new-season", year: 0 } : (data as Season);
   const router = useRouter();
 
   const form = useForm({
@@ -39,8 +39,8 @@ export const SeasonForm = ({id}: Props) => {
     router.push(`/seasons`);
   };
   return (
-      <Form {...form} onSubmit={onSubmit}>
-        <FormHeader titleFormKey="year" mutate={mutate} onDelete={async () => console.log("delete")}/>
-      </Form>
+    <Form {...form} onSubmit={onSubmit}>
+      <FormHeader titleFormKey="year" mutate={mutate} onDelete={async () => console.log("delete")} />
+    </Form>
   );
 };

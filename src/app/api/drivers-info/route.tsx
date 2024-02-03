@@ -1,9 +1,9 @@
 import { createOrUpdateDriverInfo } from "@/backend/repositories/driver-info/createOrUpdateDriverInfo";
 import { getAllDriversInfo } from "@/backend/repositories/driver-info/getAllDriversInfo";
 import { getDriversInfoCount } from "@/backend/repositories/driver-info/getDriversInfoCount";
+import { DriverInfo } from "@/backend/types/dbTypes";
 import { calculatePagination } from "@/utils/calculatePagination";
 import { createDefaultResponse } from "@/utils/createDefaultResponse";
-import { DriverInfo } from "@prisma/client";
 import { z } from "zod";
 
 export async function GET(request: Request) {

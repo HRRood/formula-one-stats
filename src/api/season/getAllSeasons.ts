@@ -1,5 +1,5 @@
+import { Season } from "@/backend/types/dbTypes";
 import { ApiOptions, api } from "../api";
-import { Season } from "@prisma/client";
 import { Pagination } from "@/utils/calculatePagination";
 
 export interface SeasonResponse {

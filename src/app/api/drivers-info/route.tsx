@@ -19,7 +19,6 @@ export async function GET(request: Request) {
 const driverInfoValidation = z.object({
   id: z.string(),
   name: z.string().min(1),
-  shortName: z.string().min(3),
   birthday: z.coerce.date().min(new Date(1900, 1, 1)),
   nationality: z.string().min(1),
   championships: z.coerce.number().min(0),
@@ -28,32 +27,26 @@ const driverInfoValidation = z.object({
   fastestLaps: z.coerce.number().min(0),
   polepositions: z.coerce.number().min(0),
   dnfs: z.coerce.number().min(0),
-  dnss: z.coerce.number().min(0),
-  dsqs: z.coerce.number().min(0),
   raceStarts: z.coerce.number().min(0),
 });
 export async function POST(request: Request) {
-  const { id, name, birthday, championships, dnfs, dnss, dsqs, fastestLaps, nationality, podiums, polepositions, shortName, wins, raceStarts }: DriverInfo =
-    await request.json();
+  const { id, name, birthday, championships, dnfs, fastestLaps, nationality, podiums, polepositions, wins, raceStarts }: DriverInfo = await request.json();
   const data = driverInfoValidation.safeParse({
     id,
     name,
     birthday,
     championships,
     dnfs,
-    dnss,
-    dsqs,
     fastestLaps,
     nationality,
     podiums,
     polepositions,
-    shortName,
     wins,
     raceStarts,
   });
 
   if (!data.success) {
-    return createDefaultResponse({}, false, "Invalid season data", { status: 400 });
+    return createDefaultResponse({}, false, "Invalid season data " + data.error, { status: 400 });
   }
 
   const driverInfo = await createOrUpdateDriverInfo(data.data);

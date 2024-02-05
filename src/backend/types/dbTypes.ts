@@ -22,7 +22,6 @@ export interface Driver {
 export interface DriverInfo {
   id: string;
   name: string;
-  shortName: string;
   birthday: Date;
   nationality: string;
   championships: number;
@@ -31,8 +30,6 @@ export interface DriverInfo {
   fastestLaps: number;
   polepositions: number;
   dnfs: number;
-  dnss: number;
-  dsqs: number;
   raceStarts: number;
 }
 

@@ -14,6 +14,9 @@ export async function getAllConstructors({ pagination }: GetAllConstructorsProps
       include: {
         Season: true,
       },
+      orderBy: {
+        name: "asc",
+      },
     })
   ).map((constructor) => {
     const season = constructor.Season;

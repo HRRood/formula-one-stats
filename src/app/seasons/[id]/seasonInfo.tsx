@@ -5,6 +5,7 @@ import { SeasonConstructors } from "./seasonConstructors";
 import { SeasonDrivers } from "./seasonDrivers";
 import { ToggleButtons } from "@/components/toggleButtons/ToggleButtons";
 import { useState } from "react";
+import { SeasonGpWeekends } from "./seasonGpWeekends";
 
 interface Props {
   id: string;
@@ -25,6 +26,7 @@ export const SeasonInfo = ({ id }: Props) => {
       />
       {view === "constructors" && <SeasonConstructors seasonId={id} />}
       {view === "drivers" && <SeasonDrivers seasonId={id} />}
+      {view === "gpweekends" && <SeasonGpWeekends seasonId={id} />}
     </Box>
   );
 };

@@ -5,35 +5,38 @@ import { Box, Typography } from "@mui/material";
 import { createOrUpdateSeasonDriver } from "@/api/season/driver/createOrUpdateSeasonDriver";
 import { DataTable } from "@/components/dataTable/DataTable";
 import { GridColDef } from "@mui/x-data-grid";
-import { Driver } from "@/backend/types/dbTypes";
+import { Driver, GpWeekend } from "@/backend/types/dbTypes";
+import { useGetAllSeasonGpWeekends } from "@/api/season/gp-weekend/useGetAllSeasonGpWeekends";
+import { format } from "date-fns";
+import { createOrUpdateSeasonGpWeekend } from "@/api/season/gp-weekend/createOrUpdateSeasonGpWeekend";
 
 interface Props {
   seasonId: string;
 }
 
-const cols: GridColDef<Driver>[] = [
+const cols: GridColDef<GpWeekend>[] = [
   {
-    flex: 0.3,
-    field: "DriverInfo.name",
+    flex: 1,
+    field: "name",
     headerName: "Name",
-    renderCell: ({ row }) => <Typography>{row.DriverInfo.name}</Typography>,
+    renderCell: ({ row }) => <Typography>{row.name}</Typography>,
   },
   {
-    flex: 0.3,
-    field: "number",
+    flex: 1,
+    field: "date",
+    headerName: "Date",
+    renderCell: ({ row }) => <Typography>{format(new Date(row.date), "dd-MM-yyyy")}</Typography>,
+  },
+  {
+    flex: 1,
+    field: "Type",
     headerName: "Number",
-    renderCell: ({ row }) => <Typography>{row.number}</Typography>,
-  },
-  {
-    flex: 0.3,
-    field: "ConstructorTeam.name",
-    headerName: "Team",
-    renderCell: ({ row }) => <Typography>{row.ConstructorTeam.name}</Typography>,
+    renderCell: ({ row }) => <Typography>{row.type}</Typography>,
   },
 ];
 
-export const SeasonDrivers = ({ seasonId }: Props) => {
-  const { data, isLoading, mutate } = useGetAllSeasonDrivers(seasonId);
+export const SeasonGpWeekends = ({ seasonId }: Props) => {
+  const { data, isLoading, mutate } = useGetAllSeasonGpWeekends(seasonId);
   const { openDialog, closeDialog } = useDialog();
 
   if (isLoading && !data) {
@@ -41,14 +44,14 @@ export const SeasonDrivers = ({ seasonId }: Props) => {
   }
   return (
     <Box sx={{ background: (theme) => theme.palette.background.paper, borderRadius: "10px", padding: "20px" }}>
-      <Box sx={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap" }}>
-        <Typography variant="h4">Drivers</Typography>
+      <Box sx={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", marginBottom: "10px" }}>
+        <Typography variant="h4">Gp Weekends</Typography>
         <Button
           onClick={() =>
-            openDialog(DialogType.AddSeasonDriver, {
+            openDialog(DialogType.AddSeasonGpWeekend, {
               seasonId,
               onCreate: async (data) => {
-                await createOrUpdateSeasonDriver(data);
+                await createOrUpdateSeasonGpWeekend(data);
                 await mutate();
                 closeDialog();
               },
@@ -56,7 +59,7 @@ export const SeasonDrivers = ({ seasonId }: Props) => {
           }
           color="primary"
         >
-          Add driver
+          Add Gp Weekend
         </Button>
       </Box>
       <Box>

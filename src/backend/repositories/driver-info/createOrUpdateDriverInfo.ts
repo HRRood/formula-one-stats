@@ -1,5 +1,5 @@
 import { prisma } from "@/backend/lib/prisma";
-import { DriverInfo } from "@prisma/client";
+import { DriverInfo } from "@/backend/types/dbTypes";
 
 export const createOrUpdateDriverInfo = async (driverInfo: DriverInfo) => {
   if (driverInfo.id.startsWith("new-")) {

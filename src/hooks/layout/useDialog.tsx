@@ -1,6 +1,7 @@
 "use client";
 
 import { Driver } from "@/backend/types/dbTypes";
+import { GpWeekend } from "@prisma/client";
 import { atom, useAtom, useSetAtom } from "jotai";
 import { useCallback } from "react";
 
@@ -9,6 +10,7 @@ export type ObjectValues<T> = T[keyof T];
 export const DialogType = {
   YesNo: "yesNoDialog",
   AddSeasonDriver: "addSeasonDriverDialog",
+  AddSeasonGpWeekend: "addSeasonGpWeekendDialog",
   None: "none",
 } as const;
 
@@ -26,6 +28,10 @@ export type DialogPropsMap = {
   [DialogType.AddSeasonDriver]: {
     seasonId: string;
     onCreate: (data: Driver) => Promise<void> | void;
+  };
+  [DialogType.AddSeasonGpWeekend]: {
+    seasonId: string;
+    onCreate: (data: GpWeekend) => Promise<void> | void;
   };
   [DialogType.None]: {};
 };

@@ -21,12 +21,6 @@ export const cols: GridColDef<DriverInfo>[] = [
   },
   {
     flex: 0.3,
-    field: "shortName",
-    headerName: "Short Name",
-    renderCell: ({ row }) => <Typography>{row.shortName}</Typography>,
-  },
-  {
-    flex: 0.3,
     field: "championships",
     headerName: "Championships",
     sortable: true,

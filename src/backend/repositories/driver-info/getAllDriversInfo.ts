@@ -11,6 +11,9 @@ export async function getAllDriversInfo({ pagination }: GetAllDriversInfoProps) 
     await prisma.driverInfo.findMany({
       skip: (pageNumber - 1) * pageSize,
       take: pageSize,
+      orderBy: {
+        name: "asc",
+      },
     })
-  ).map((driverInfo) => ({ ...driverInfo, birthday: new Date(driverInfo.birthday) }));
+  ).map((driverInfo) => ({ ...driverInfo, birthday: new Date(driverInfo.birthday || 0) }));
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useGetAllSeasons } from "@/api/season/useGetAllSeasons";
+import { useGetAllSeasons } from "@/datafetching/season/useGetAllSeasons";
 import { Box, Typography } from "@mui/material";
 import { useState } from "react";
 import { GridColDef } from "@mui/x-data-grid";

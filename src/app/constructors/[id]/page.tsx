@@ -2,8 +2,8 @@
 
 import { Container } from "@/components/global/container";
 import { ConstrutorDetailPage } from "./constructorDetailPage";
-import { useGetAllSeasons } from "@/api/season/useGetAllSeasons";
-import { useGetConstructorById } from "@/api/constructor/useGetConstructorById";
+import { useGetAllSeasons } from "@/datafetching/season/useGetAllSeasons";
+import { useGetConstructorById } from "@/datafetching/constructor/useGetConstructorById";
 
 export default function Page({ params }: { params: { id: string } }) {
   const { data, mutate, isLoading } = useGetConstructorById(params.id);

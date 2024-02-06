@@ -1,4 +1,4 @@
-import { useGetAllSeasonConstructors } from "@/api/season/constructor/useGetAllSeasonsConstructors";
+import { useGetAllSeasonConstructors } from "@/datafetching/season/constructor/useGetAllSeasonsConstructors";
 import { DialogPropsMap } from "@/hooks/layout/useDialog";
 import { Form } from "@/wrappers/form";
 import { Box } from "@mui/material";
@@ -7,7 +7,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { InputField } from "@/components/global/form/fields/inputField";
 import { SelectField } from "@/components/global/form/fields/selectField";
-import { useGetAllDriversInfo } from "@/api/drivers-info/useGetAllDriversInfo";
+import { useGetAllDriversInfo } from "@/datafetching/drivers-info/useGetAllDriversInfo";
 import { Button } from "@/components/global/button";
 import { Driver } from "@/backend/types/dbTypes";
 

@@ -1,4 +1,4 @@
-import { ApiOptions } from "@/api/api";
+import { ApiOptions } from "@/datafetching/api";
 import { useSWR } from "../utils/useSWR";
 import { getConstructorById } from "./getConstructorById";
 import { mutate } from "swr";

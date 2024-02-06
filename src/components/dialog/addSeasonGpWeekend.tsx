@@ -1,15 +1,13 @@
-import { useGetAllSeasonConstructors } from "@/api/season/constructor/useGetAllSeasonsConstructors";
 import { DialogPropsMap } from "@/hooks/layout/useDialog";
 import { Form } from "@/wrappers/form";
-import { Box, Select } from "@mui/material";
+import { Box } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { InputField } from "@/components/global/form/fields/inputField";
 import { SelectField } from "@/components/global/form/fields/selectField";
-import { useGetAllDriversInfo } from "@/api/drivers-info/useGetAllDriversInfo";
 import { Button } from "@/components/global/button";
-import { Driver, GpWeekend } from "@/backend/types/dbTypes";
+import { GpWeekend } from "@/backend/types/dbTypes";
 import { DateField } from "../global/form/fields/dateField";
 
 const validation = z.object({

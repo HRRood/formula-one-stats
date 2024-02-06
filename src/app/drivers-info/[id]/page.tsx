@@ -2,7 +2,7 @@
 
 import { Container } from "@/components/global/container";
 import { DriversInfoDetailPage } from "./driversInfoDetailPage";
-import { useGetDriverInfoById } from "@/api/drivers-info/useGetDriverInfoById";
+import { useGetDriverInfoById } from "@/datafetching/drivers-info/useGetDriverInfoById";
 
 export default function Page({ params }: { params: { id: string } }) {
   const { isLoading } = useGetDriverInfoById(params.id);

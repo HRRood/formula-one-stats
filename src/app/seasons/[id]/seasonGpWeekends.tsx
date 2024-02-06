@@ -1,14 +1,12 @@
-import { useGetAllSeasonDrivers } from "@/api/season/driver/useGetAllSeasons";
 import { Button } from "@/components/global/button";
 import { DialogType, useDialog } from "@/hooks/layout/useDialog";
-import { Box, Typography } from "@mui/material";
-import { createOrUpdateSeasonDriver } from "@/api/season/driver/createOrUpdateSeasonDriver";
+import { Box, Link, Typography } from "@mui/material";
 import { DataTable } from "@/components/dataTable/DataTable";
 import { GridColDef } from "@mui/x-data-grid";
-import { Driver, GpWeekend } from "@/backend/types/dbTypes";
-import { useGetAllSeasonGpWeekends } from "@/api/season/gp-weekend/useGetAllSeasonGpWeekends";
+import { GpWeekend } from "@/backend/types/dbTypes";
+import { useGetAllSeasonGpWeekends } from "@/datafetching/season/gp-weekend/useGetAllSeasonGpWeekends";
 import { format } from "date-fns";
-import { createOrUpdateSeasonGpWeekend } from "@/api/season/gp-weekend/createOrUpdateSeasonGpWeekend";
+import { createOrUpdateSeasonGpWeekend } from "@/datafetching/season/gp-weekend/createOrUpdateSeasonGpWeekend";
 
 interface Props {
   seasonId: string;
@@ -19,7 +17,11 @@ const cols: GridColDef<GpWeekend>[] = [
     flex: 1,
     field: "name",
     headerName: "Name",
-    renderCell: ({ row }) => <Typography>{row.name}</Typography>,
+    renderCell: ({ row }) => (
+      <Link href={`/gp-weekend/${row.id}`}>
+        <Typography>{row.name}</Typography>
+      </Link>
+    ),
   },
   {
     flex: 1,

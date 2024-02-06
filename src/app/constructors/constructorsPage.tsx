@@ -5,7 +5,7 @@ import { useState } from "react";
 import { GridColDef } from "@mui/x-data-grid";
 import { DataTable, PaginationParams } from "@/components/dataTable/DataTable";
 import Link from "next/link";
-import { useGetAllConstructors } from "@/api/constructor/useGetAllConstructors";
+import { useGetAllConstructors } from "@/datafetching/constructor/useGetAllConstructors";
 import { ConstructorTeam } from "@/backend/types/dbTypes";
 
 export const cols: GridColDef<ConstructorTeam>[] = [

@@ -1,8 +1,8 @@
 "use client";
 
-import { createOrUpdateConstructor } from "@/api/constructor/createOrUpdateConstructor";
-import { useGetConstructorById } from "@/api/constructor/useGetConstructorById";
-import { useGetAllSeasons } from "@/api/season/useGetAllSeasons";
+import { createOrUpdateConstructor } from "@/datafetching/constructor/createOrUpdateConstructor";
+import { useGetConstructorById } from "@/datafetching/constructor/useGetConstructorById";
+import { useGetAllSeasons } from "@/datafetching/season/useGetAllSeasons";
 import { ConstructorTeam } from "@/backend/types/dbTypes";
 import { FormHeader } from "@/components/global/form/FormHeader/formHeader";
 import { InputField } from "@/components/global/form/fields/inputField";

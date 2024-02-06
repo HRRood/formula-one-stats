@@ -1,13 +1,13 @@
 "use client";
 
-import { createOrUpdateSeason } from "@/api/season/createOrUpdateSeason";
+import { createOrUpdateSeason } from "@/datafetching/season/createOrUpdateSeason";
 import { FormHeader } from "@/components/global/form/FormHeader/formHeader";
 import { Form } from "@/wrappers/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { useGetSeasonById } from "@/api/season/useGetSeasonById";
+import { useGetSeasonById } from "@/datafetching/season/useGetSeasonById";
 import { Season } from "@/backend/types/dbTypes";
 
 const validation = z.object({

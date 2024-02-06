@@ -1,7 +1,7 @@
 "use client";
 
-import { createOrUpdateDriverInfo } from "@/api/drivers-info/createOrUpdateDriverInfo";
-import { useGetDriverInfoById } from "@/api/drivers-info/useGetDriverInfoById";
+import { createOrUpdateDriverInfo } from "@/datafetching/drivers-info/createOrUpdateDriverInfo";
+import { useGetDriverInfoById } from "@/datafetching/drivers-info/useGetDriverInfoById";
 import { DriverInfo } from "@/backend/types/dbTypes";
 import { FormHeader } from "@/components/global/form/FormHeader/formHeader";
 import { DateField } from "@/components/global/form/fields/dateField";

@@ -1,4 +1,4 @@
-import { useGetAllSeasonConstructors } from "@/api/season/constructor/useGetAllSeasonsConstructors";
+import { useGetAllSeasonConstructors } from "@/datafetching/season/constructor/useGetAllSeasonsConstructors";
 import { Box, Typography } from "@mui/material";
 
 interface Props {

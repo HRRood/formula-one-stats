@@ -1,8 +1,8 @@
-import { useGetAllSeasonDrivers } from "@/api/season/driver/useGetAllSeasons";
+import { useGetAllSeasonDrivers } from "@/datafetching/season/driver/useGetAllSeasons";
 import { Button } from "@/components/global/button";
 import { DialogType, useDialog } from "@/hooks/layout/useDialog";
 import { Box, Typography } from "@mui/material";
-import { createOrUpdateSeasonDriver } from "@/api/season/driver/createOrUpdateSeasonDriver";
+import { createOrUpdateSeasonDriver } from "@/datafetching/season/driver/createOrUpdateSeasonDriver";
 import { DataTable } from "@/components/dataTable/DataTable";
 import { GridColDef } from "@mui/x-data-grid";
 import { Driver } from "@/backend/types/dbTypes";

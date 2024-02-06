@@ -1,11 +1,6 @@
-import { getSeasonDrivers } from "@/backend/repositories/season/drivers/getSeasonDrivers";
 import { getSeasonById } from "@/backend/repositories/season/getSeasonById";
 import { createDefaultResponse } from "@/utils/createDefaultResponse";
-import { Driver } from "@prisma/client";
 import { z } from "zod";
-import { getConstructorById } from "@/backend/repositories/constructor/getConstructorById";
-import { getDriverInfoById } from "@/backend/repositories/driver-info/getDriverInfoById";
-import { createOrUpdateSeasonDriver } from "@/backend/repositories/season/drivers/createOrUpdateSeasonDriver";
 import { getSeasonGpWeekends } from "@/backend/repositories/season/gp-weekend/getSeasonGpWeekends";
 import { GpWeekend } from "@/backend/types/dbTypes";
 import { createOrUpdateSeasonGpWeekend } from "@/backend/repositories/season/gp-weekend/createOrUpdateSeasonGpWeekend";

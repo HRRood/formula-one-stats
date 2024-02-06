@@ -5,7 +5,7 @@ import { useState } from "react";
 import { GridColDef } from "@mui/x-data-grid";
 import { DataTable, PaginationParams } from "@/components/dataTable/DataTable";
 import Link from "next/link";
-import { useGetAllDriversInfo } from "@/api/drivers-info/useGetAllDriversInfo";
+import { useGetAllDriversInfo } from "@/datafetching/drivers-info/useGetAllDriversInfo";
 import { DriverInfo } from "@/backend/types/dbTypes";
 
 export const cols: GridColDef<DriverInfo>[] = [

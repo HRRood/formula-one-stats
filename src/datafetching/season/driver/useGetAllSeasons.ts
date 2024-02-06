@@ -1,8 +1,8 @@
-import { ApiOptions } from "@/api/api";
-import { useSWR } from "@/api/utils/useSWR";
+import { ApiOptions } from "@/datafetching/api";
+import { useSWR } from "@/datafetching/utils/useSWR";
 import { getAllSeasonDrivers } from "./getAllSeasonDrivers";
 import { useSWRConfig } from "swr";
-import { SEASON_KEY } from "@/api/season/utils";
+import { SEASON_KEY } from "@/datafetching/season/utils";
 
 export const useGetAllSeasonDrivers = (seasonId: string, options?: ApiOptions) => {
   const { mutate } = useSWRConfig();

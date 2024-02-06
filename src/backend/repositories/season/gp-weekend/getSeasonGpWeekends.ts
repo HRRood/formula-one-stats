@@ -10,5 +10,8 @@ export const getSeasonGpWeekends = async (id: string) => {
     include: {
       Season: true,
     },
+    orderBy: {
+      date: "asc",
+    },
   });
 };

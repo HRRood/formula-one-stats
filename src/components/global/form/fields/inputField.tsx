@@ -41,7 +41,7 @@ const Comp = memo(({ name, errorMsgPositionAbsolute = false, errors, setValue, g
         {...props}
         helperText={
           <Typography
-            variant={"body2"}
+            variant={"caption"}
             color={"error"}
             sx={
               errorMsgPositionAbsolute

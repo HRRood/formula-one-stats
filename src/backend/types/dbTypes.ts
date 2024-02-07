@@ -72,10 +72,11 @@ export interface Point {
 export interface QualifyingResult {
   id: string;
   position: number;
-  time: Date;
+  time: number;
   driverId: string;
   gpWeekendId: string;
   GpWeekend: GpWeekend;
+  Driver: Driver;
 }
 
 export interface Race {

@@ -6,6 +6,7 @@ import { FC } from "react";
 import { YesNoDialog } from "../dialog/yesNoDialog";
 import { AddSeasonDriver } from "../dialog/addSeasonDriver";
 import { AddSeasonGpWeekend } from "../dialog/addSeasonGpWeekend";
+import { AddQualifingResultsDialog } from "../dialog/addQualifingResults";
 
 export const dialogComponents: Record<DialogType, { comp: FC<any>; size: "lg" | "sm" | "xs" }> = {
   [DialogType.YesNo]: {
@@ -18,6 +19,10 @@ export const dialogComponents: Record<DialogType, { comp: FC<any>; size: "lg" | 
   },
   [DialogType.AddSeasonGpWeekend]: {
     comp: AddSeasonGpWeekend,
+    size: "lg",
+  },
+  [DialogType.AddQualifingResults]: {
+    comp: AddQualifingResultsDialog,
     size: "lg",
   },
   [DialogType.None]: {

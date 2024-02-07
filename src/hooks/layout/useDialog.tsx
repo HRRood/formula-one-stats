@@ -11,6 +11,7 @@ export const DialogType = {
   YesNo: "yesNoDialog",
   AddSeasonDriver: "addSeasonDriverDialog",
   AddSeasonGpWeekend: "addSeasonGpWeekendDialog",
+  AddQualifingResults: "addQualifingResultsDialog",
   None: "none",
 } as const;
 
@@ -32,6 +33,9 @@ export type DialogPropsMap = {
   [DialogType.AddSeasonGpWeekend]: {
     seasonId: string;
     onCreate: (data: GpWeekend) => Promise<void> | void;
+  };
+  [DialogType.AddQualifingResults]: {
+    gpWeekendId: string;
   };
   [DialogType.None]: {};
 };

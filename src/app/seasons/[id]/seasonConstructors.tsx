@@ -7,7 +7,6 @@ interface Props {
 
 export const SeasonConstructors = ({ seasonId }: Props) => {
   const { data, isLoading } = useGetAllSeasonConstructors(seasonId);
-  console.log("rororo", data);
 
   if (isLoading && !data) {
     return <div>Loading...</div>;

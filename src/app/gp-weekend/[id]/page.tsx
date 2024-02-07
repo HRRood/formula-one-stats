@@ -1,5 +1,6 @@
 import { getGpWeekendById } from "@/backend/repositories/gp-weekend/getGpWeekendById";
 import { GpWeekendDetail } from "./gpWeekendDetail";
+import { Container } from "@mui/material";
 
 export default async function Page({ params }: { params: { id: string } }) {
   const data = await getGpWeekendById(params.id);
@@ -9,9 +10,8 @@ export default async function Page({ params }: { params: { id: string } }) {
   }
 
   return (
-    <div>
-      <h1>GP Weekend</h1>
+    <Container>
       <GpWeekendDetail initData={data} />
-    </div>
+    </Container>
   );
 }
